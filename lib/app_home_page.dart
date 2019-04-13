@@ -54,7 +54,7 @@ class _HomePageState extends State<AppHomePage> {
       appBar: AppBar(
         elevation: 0.0,
         title: Text(
-          _appBarTitle[0],
+          _appBarTitle[_currentIndex],
           style: TextStyle(color: Color(AppColors.APPBAR)),
         ),
         iconTheme: IconThemeData(color: Color(AppColors.APPBAR)),

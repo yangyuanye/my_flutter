@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_model/app_bar.dart';
 
-class TweetPage extends StatefulWidget{
-  TweetPage(this.title);
+class FindPage extends StatefulWidget{
+  FindPage(this.title);
   String title ;
+
   @override
-  _TweetPageState createState() {
+  _FindPage createState() {
     // TODO: implement createState
-    return _TweetPageState(title);
+    return _FindPage(title);
   }
 
 }
-class _TweetPageState extends State<TweetPage>{
-  _TweetPageState(this._title);
+class _FindPage extends State<FindPage>{
+  _FindPage(this._title);
   String _title ;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: MyAppBar(_title).myAppBar,
+            appBar: MyAppBar(_title).myAppBar,
     );
   }
 

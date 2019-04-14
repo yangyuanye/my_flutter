@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_model/constants/app_colors.dart';
+import 'package:flutter_app_model/constants/app_strings.dart';
+import 'package:flutter_app_model/pages/main/find_page.dart';
+import 'package:flutter_app_model/pages/main/my_page.dart';
 import 'package:flutter_app_model/pages/main/news_list_page.dart';
+import 'package:flutter_app_model/pages/main/tweet_page.dart';
 import 'package:flutter_app_model/widgets/navigation_icon_view.dart';
 
 class AppHomePage extends StatefulWidget {
@@ -11,7 +14,8 @@ class AppHomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<AppHomePage> {
-  final _appBarTitle = ['头条', '动态', '发现', '我的'];
+  final _appBarTitle = [AppStrings.HOME_TITLE_HEADLINES, AppStrings.HOME_TITLE2_DYNAMIC,
+                        AppStrings.HOME_TITLE3_FIND, AppStrings.HOME_TITLE4_MY];
   List<NavigationIconView> _navigationIconViews;
   var _currentIndex = 0;
   List<Widget> _pages;
@@ -22,27 +26,27 @@ class _HomePageState extends State<AppHomePage> {
     super.initState();
     _navigationIconViews = [
       NavigationIconView(
-          title: '头条',
+          title: _appBarTitle[0],
           iconPath: 'assets/images/ic_nav_news_normal.png',
           activeIconPath: 'assets/images/ic_nav_news_actived.png'),
       NavigationIconView(
-          title: '动态',
+          title: _appBarTitle[1],
           iconPath: 'assets/images/ic_nav_tweet_normal.png',
           activeIconPath: 'assets/images/ic_nav_tweet_actived.png'),
       NavigationIconView(
-          title: '发现',
+          title: _appBarTitle[2],
           iconPath: 'assets/images/ic_nav_discover_normal.png',
           activeIconPath: 'assets/images/ic_nav_discover_actived.png'),
       NavigationIconView(
-          title: '我的',
+          title: _appBarTitle[3],
           iconPath: 'assets/images/ic_nav_my_normal.png',
           activeIconPath: 'assets/images/ic_nav_my_pressed.png'),
     ];
     _pages = [
-      NewsListPage(),
-      NewsListPage(),
-      NewsListPage(),
-      NewsListPage(),
+      NewsListPage(_appBarTitle[0]),
+      TweetPage(_appBarTitle[1]),
+      FindPage(_appBarTitle[2]),
+      MyPage(_appBarTitle[3]),
     ];
 
     _pageController = PageController(initialPage: _currentIndex);
@@ -51,14 +55,6 @@ class _HomePageState extends State<AppHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        title: Text(
-          _appBarTitle[_currentIndex],
-          style: TextStyle(color: Color(AppColors.APPBAR)),
-        ),
-        iconTheme: IconThemeData(color: Color(AppColors.APPBAR)),
-      ),
       body: PageView.builder(
           physics: NeverScrollableScrollPhysics(),
           //禁止滑动
@@ -85,11 +81,7 @@ class _HomePageState extends State<AppHomePage> {
               curve: Curves.ease);
         },
       ),
-      /*drawer: MyDrawer(
-        headImgPath: 'assets/images/cover_img.jpg',
-        menuIcons: [Icons.send, Icons.home, Icons.error, Icons.settings],
-        menuTitles: ,
-      ),*/
+
     );
   }
 }
